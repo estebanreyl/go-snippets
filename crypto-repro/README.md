@@ -24,7 +24,7 @@ func isHashMarshallable(md ossl.EVP_MD_PTR) bool {
 }
 ```
 
-in the fips image this check seems to fail because variable **name**=**symcryptprovider**. We are not entirely sure why this is happening as I understood that we would not end up invoking the fips library from go in the msft image.
+in the fips image this check seems to fail because variable **name**=**symcryptprovider**. We are not entirely sure why this is happening as I understood that we would not end up invoking the fips library from go in the msft image but from looking at the crypto/sha256 import it does in fact reference the fips library https://cs.opensource.google/go/go/+/refs/tags/go1.24.2:src/crypto/sha256/sha256.go
 
 ## Repro
 
