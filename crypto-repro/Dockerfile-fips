@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/oss/go/microsoft/golang:1.23-fips-azurelinux3.0
+
+RUN tdnf update -y && \
+    tdnf install ca-certificates-microsoft -y && \
+    tdnf install golang -y
+
+COPY . .
+RUN go build -o bin/crypto-repro
+CMD ["./bin/crypto-repro"]
